@@ -2,3 +2,4 @@
 
 - Build the image `docker-compose build`
 - Run it `docker-compose up`
+- Open http://localhost
