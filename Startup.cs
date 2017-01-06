@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using StackExchange.Redis;
+using System.Collections;
 
 namespace DotnetDocker
 {
@@ -27,6 +29,13 @@ namespace DotnetDocker
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            foreach (DictionaryEntry e in System.Environment.GetEnvironmentVariables())
+            {
+                Console.WriteLine(e.Key  + ":" + e.Value);
+            }
+
+            ConnectionMultiplexer redis = ConnectionMultiplexer.Connect("redis:6379");
 
             app.Run(async (context) =>
             {
